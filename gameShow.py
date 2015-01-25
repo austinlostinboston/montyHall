@@ -1,6 +1,7 @@
 import random
 
-def playGame(iterations):
+def playGame(iterations,style="switch"):
+
 	'''Plays the famous Monty Hall Gameshow.
 	The gameshow consists of three doors. Behind two
 	doors are goats (for TV entertainment purposes)
@@ -58,11 +59,15 @@ def playGame(iterations):
 		#  door. In this case, the player chooses to
 		#  change to the unseen door, from their orig-
 		#  nal guess.
-		playersOptions.remove(doorShow)
-		secondChoice = playersOptions[0]
+		if style == "switch":
+			playersOptions.remove(doorShow)
+			finalChoice = playersOptions[0]
+
+		if style == "stay":
+			finalChoice = playerChoice
 		
 		## Count numbers of wins and losses
-		if secondChoice == car:
+		if finalChoice == car:
 			wins += 1
 		else:
 			losses += 1
@@ -75,5 +80,5 @@ def playGame(iterations):
 	#print car, playerChoice, secondChoice
 
 if __name__ == "__main__":
-	playGame(1000000)
+	playGame(1000000,"stay")
 
